@@ -26,7 +26,7 @@ return {
           only_scope = true,
         },
         scope = {
-          enabled = true, -- enable highlighting the current scope
+          enabled = true,   -- enable highlighting the current scope
           underline = true, -- underline the start of the scope
         },
         chunk = {
@@ -47,12 +47,12 @@ return {
         enabled = true,
         previewers = {
           diff = {
-            builtin = false, -- use Neovim for previewing diffs (true) or use an external tool (false)
+            builtin = false,   -- use Neovim for previewing diffs (true) or use an external tool (false)
             cmd = { "delta" }, -- example to show a diff with delta
           },
           git = {
             builtin = false, -- use Neovim for previewing git output (true) or use git (false)
-            args = {}, -- additional arguments passed to the git command. Useful to set pager options using `-c ...`
+            args = {},       -- additional arguments passed to the git command. Useful to set pager options using `-c ...`
           },
         },
         sources = {
@@ -90,7 +90,17 @@ return {
         cursor = false,
       },
 
-      statuscolumn = { enabled = true },
+      statuscolumn = {
+        enabled = true,
+        left = { "mark", "sign" }, -- priority of signs on the left (high to low)
+        right = { "fold", "git" }, -- priority of signs on the right (high to low)
+        folds = {
+          open = true,             -- show open fold icons
+          git_hl = false,          -- use Git Signs hl for fold icons
+        },
+        refresh = 50,              -- refresh at most every 50ms
+      },
+
       terminal = {
         enabled = true,
       },
@@ -189,34 +199,34 @@ return {
           vim.print = _G.dd -- Override print to use snacks for `:=` command
 
           Snacks.toggle
-            .new({
-              id = "Animation",
-              name = "Animation",
-              get = function()
-                return Snacks.animate.enabled()
-              end,
-              set = function(state)
-                vim.g.snacks_animate = state
-              end,
-            })
-            :map("<leader>ta")
+              .new({
+                id = "Animation",
+                name = "Animation",
+                get = function()
+                  return Snacks.animate.enabled()
+                end,
+                set = function(state)
+                  vim.g.snacks_animate = state
+                end,
+              })
+              :map("<leader>ta")
 
           Snacks.toggle
-            .new({
-              id = "scroll_anima",
-              name = "Scroll animation",
-              get = function()
-                return Snacks.scroll.enabled
-              end,
-              set = function(state)
-                if state then
-                  Snacks.scroll.enable()
-                else
-                  Snacks.scroll.disable()
-                end
-              end,
-            })
-            :map("<leader>tS")
+              .new({
+                id = "scroll_anima",
+                name = "Scroll animation",
+                get = function()
+                  return Snacks.scroll.enabled
+                end,
+                set = function(state)
+                  if state then
+                    Snacks.scroll.enable()
+                  else
+                    Snacks.scroll.disable()
+                  end
+                end,
+              })
+              :map("<leader>tS")
 
           -- Create some toggle mappings
           Snacks.toggle.dim():map("<leader>tD")
@@ -227,8 +237,8 @@ return {
           Snacks.toggle.diagnostics():map("<leader>td")
           Snacks.toggle.line_number():map("<leader>tl")
           Snacks.toggle
-            .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-            :map("<leader>tc")
+              .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+              :map("<leader>tc")
           Snacks.toggle.treesitter():map("<leader>tT")
           Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>tb")
           Snacks.toggle.inlay_hints():map("<leader>th")
