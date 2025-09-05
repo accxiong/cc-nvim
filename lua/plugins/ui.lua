@@ -95,7 +95,7 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     init = function() vim.g.barbar_auto_setup = false end,
-    event = { "VeryLazy" },
+    lazy = false,
     keys = {
       { "<A-<>", "<CMD>BufferMovePrevious<CR>", mode = { "n" }, desc = "[Buffer] Move buffer left" },
       { "<A->>", "<CMD>BufferMoveNext<CR>",     mode = { "n" }, desc = "[Buffer] Move buffer right" },
@@ -115,7 +115,7 @@ return {
       animation = false,
       -- Automatically hide the tabline when there are this many buffers left.
       -- Set to any value >=0 to enable.
-      auto_hide = 0,
+      auto_hide = 1,
 
       -- Set the filetypes which barbar will offset itself for
       sidebar_filetypes = {
