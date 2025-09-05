@@ -6,6 +6,7 @@ return {
       -- 'rafamadriz/friendly-snippets'
       "nvim-tree/nvim-web-devicons",
       "onsails/lspkind.nvim",
+      "folke/lazydev.nvim",
     },
 
     -- use a release tag to download pre-built binaries
@@ -70,10 +71,20 @@ return {
           if success and node and vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
             return { "buffer" }
           else
-            return { "lsp", "path", "snippets", "buffer" }
+            return { "lazydev", "lsp", "path", "snippets", "buffer" }
           end
         end,
+        per_filetype = {
+          codecompanion = { "codecompanion" },
+        },
+
         providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 95,
+          },
           path = {
             score_offset = 95,
             opts = {

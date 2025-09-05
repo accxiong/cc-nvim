@@ -1,10 +1,18 @@
 return {
   {
+    "nvim-tree/nvim-web-devicons",
+    opts = {
+      override = {
+      },
+    },
+  },
+
+  {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-      'nvim-tree/nvim-web-devicons'
+      'nvim-tree/nvim-web-devicons',
+      "AndreM222/copilot-lualine",
     },
-    enabled = vim.g.vscode and true or true,
     opts = {
       options = {
         theme = "catppuccin",
@@ -55,7 +63,25 @@ return {
         padding = 0,
       }
 
+      local copilot = {
+        "copilot",
+        show_colors = true,
+        symbols = {
+          status = {
+            hl = {
+              enabled = mocha.green,
+              sleep = mocha.overlay0,
+              disabled = mocha.surface0,
+              warning = mocha.peach,
+              unknown = mocha.red,
+            },
+          },
+          spinner_color = mocha.mauve,
+        },
+      }
+
       table.insert(opts.sections.lualine_x, 1, macro_recording)
+      table.insert(opts.sections.lualine_c, copilot)
 
       require("lualine").setup(opts)
     end
@@ -69,7 +95,7 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     init = function() vim.g.barbar_auto_setup = false end,
-    lazy = false,
+    event = { "VeryLazy" },
     keys = {
       { "<A-<>", "<CMD>BufferMovePrevious<CR>", mode = { "n" }, desc = "[Buffer] Move buffer left" },
       { "<A->>", "<CMD>BufferMoveNext<CR>",     mode = { "n" }, desc = "[Buffer] Move buffer right" },
@@ -84,13 +110,12 @@ return {
       { "<A-9>", "<CMD>BufferGoto 9<CR>",       mode = { "n" }, desc = "[Buffer] Go to buffer 9" },
       { "<A-h>", "<CMD>BufferPrevious<CR>",     mode = { "n" }, desc = "[Buffer] Previous buffer" },
       { "<A-l>", "<CMD>BufferNext<CR>",         mode = { "n" }, desc = "[Buffer] Next buffer" },
-      { "<A-w>", "<CMD>BufferClose<CR>",        mode = { "n" }, desc = "Close buffer" },
     },
     opts = {
       animation = false,
       -- Automatically hide the tabline when there are this many buffers left.
       -- Set to any value >=0 to enable.
-      auto_hide = 1,
+      auto_hide = 0,
 
       -- Set the filetypes which barbar will offset itself for
       sidebar_filetypes = {
@@ -117,42 +142,7 @@ return {
     submodules = false,
     opts = {}
   },
-  -- {
-  --   'folke/noice.nvim',
-  --   event = 'VeryLazy',
-  --   dependencies = {
-  --     'MunifTanjim/nui.nvim',
-  --   },
-  --   lazy = true,
-  --   config = function()
-  --     require('noice').setup({
-  --       presets = { inc_rename = true },
-  --       cmdline = {
-  --         -- 移除命令行边框
-  --         view = 'cmdline_popup',
-  --         opts = {
-  --         },
-  --         format = {
-  --           cmdline = { icon = '>' },
-  --         },
-  --       },
-  --       routes = {
-  --         {
-  --           -- vue_ls lspsaga finder def error
-  --           filter = {
-  --             event = 'msg_show',
-  --             any = {
-  --               { find = 'Error executing vim.schedule lua callback' },
-  --               { find = 'attempt to index local \'r\'' },
-  --               { find = 'vue_ls.lua' },
-  --             },
-  --           },
-  --           opts = { skip = true },
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- }
+
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -162,22 +152,25 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      { "rcarriga/nvim-notify", opts = { background_colour = "#000000" } }
+      -- {"rcarriga/nvim-notify", opts = {background_colour = "#000000"}}
     },
     keys = {
       { "<leader>sN", "<CMD>Noice pick<CR>", desc = "[Noice] Pick history messages" }, -- FIXME: Currently unusable
       { "<leader>N",  "<CMD>Noice<CR>",      desc = "[Noice] Show history messages" },
     },
+
     opts = {
       popupmenu = {
+        enabled = false,
+      },
+      notify = {
         enabled = false,
       },
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+          ["vim.lsp.util.stylize_markdown"] = false,
         },
       },
       -- you can enable a preset for easier configuration
@@ -195,5 +188,42 @@ return {
         { filter = { event = "msg_show", kind = "", },             opts = { skip = true }, },
       },
     }
-  }
+  },
+
+  {
+    "echasnovski/mini.diff",
+    event = "VeryLazy",
+    version = "*",
+    opts = {},
+  },
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      ---@type false | "classic" | "modern" | "helix"
+      preset = "helix",
+      win = {
+        -- no_overlap = true,
+        title = false,
+        width = 0.5,
+      },
+      -- stylua: ignore
+      spec = {
+        { "<leader>cc", group = "<CodeCompanion>", icon = "" },
+        { "<leader>s", group = "<Snacks>" },
+        { "<leader>t", group = "<Snacks> Toggle" },
+      },
+      -- expand all nodes wighout a description
+      expand = function(node)
+        return not node.desc
+      end,
+    },
+    keys = {
+      -- stylua: ignore
+      { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "[Which-key] Buffer Local Keymaps", },
+    },
+  },
+
 }
