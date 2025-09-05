@@ -7,11 +7,28 @@ return {
 
       configs.setup({
         auto_install = true,
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "go", "python" },
+        ensure_installed = {
+          "css",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "rust",
+          "typescript",
+          "vim",
+          "vue",
+          "scss",
+          "markdown",
+          "markdown_inline",
+          "yaml",
+          "vimdoc",
+          "go",
+          "python",
+        },
         sync_install = false,
         highlight = { enable = true },
         indent = { enable = true },
       })
-    end
-  }
+    end,
+  },
 }

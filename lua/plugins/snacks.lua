@@ -20,13 +20,13 @@ return {
       indent = {
         enabled = true,
         animate = {
-          enabled = false
+          enabled = false,
         },
         indent = {
-          only_scope = true
+          only_scope = true,
         },
         scope = {
-          enabled = true,   -- enable highlighting the current scope
+          enabled = true, -- enable highlighting the current scope
           underline = true, -- underline the start of the scope
         },
         chunk = {
@@ -47,17 +47,17 @@ return {
         enabled = true,
         previewers = {
           diff = {
-            builtin = false,   -- use Neovim for previewing diffs (true) or use an external tool (false)
+            builtin = false, -- use Neovim for previewing diffs (true) or use an external tool (false)
             cmd = { "delta" }, -- example to show a diff with delta
           },
           git = {
             builtin = false, -- use Neovim for previewing git output (true) or use git (false)
-            args = {},       -- additional arguments passed to the git command. Useful to set pager options using `-c ...`
+            args = {}, -- additional arguments passed to the git command. Useful to set pager options using `-c ...`
           },
         },
         sources = {
           spelling = {
-            layout = { preset = "select" }
+            layout = { preset = "select" },
           },
         },
         win = {
@@ -108,6 +108,7 @@ return {
       },
     },
 
+    -- stylua: ignore
     keys = {
       { "<A-w>",           function() require("snacks").bufdelete() end,                    desc = "[Snacks] Delete buffer" },
       { "<leader>si",      function() require("snacks").image.hover() end,                  desc = "[Snacks] Display image" },
@@ -127,10 +128,10 @@ return {
       { "<leader>sr",      function() require("snacks").picker.recent() end,                desc = "[Snacks] Recent" },
       -- git
       { "<C-g>",           function() require("snacks").lazygit() end,                      desc = "[Snacks] Lazygit" },
-      { "<leader>gl",      function() require("snacks").picker.git_log() end,               desc = "[Snacks] Git log" },
-      { "<leader>gd",      function() require("snacks").picker.git_diff() end,              desc = "[Snacks] Git diff" },
-      { "<leader>gb",      function() require("snacks").git.blame_line() end,               desc = "[Snacks] Git blame line" },
-      { "<leader>gB",      function() require("snacks").gitbrowse() end,                    desc = "[Snacks] Git browse" },
+      { "<leader>ggl",     function() require("snacks").picker.git_log() end,               desc = "[Snacks] Git log" },
+      { "<leader>ggd",     function() require("snacks").picker.git_diff() end,              desc = "[Snacks] Git diff" },
+      { "<leader>ggb",     function() require("snacks").git.blame_line() end,               desc = "[Snacks] Git blame line" },
+      { "<leader>ggB",     function() require("snacks").gitbrowse() end,                    desc = "[Snacks] Git browse" },
       -- Grep
       -- { "<leader>sb", function() require("snacks").picker.lines() end, desc = "[Snacks] Buffer lines" },
       -- { "<leader>sB", function() require("snacks").picker.grep_buffers() end, desc = "[Snacks] Grep open buffers" },
@@ -187,31 +188,35 @@ return {
           end
           vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-          Snacks.toggle.new({
-            id = "Animation",
-            name = "Animation",
-            get = function()
-              return Snacks.animate.enabled()
-            end,
-            set = function(state)
-              vim.g.snacks_animate = state
-            end
-          }):map("<leader>ta")
+          Snacks.toggle
+            .new({
+              id = "Animation",
+              name = "Animation",
+              get = function()
+                return Snacks.animate.enabled()
+              end,
+              set = function(state)
+                vim.g.snacks_animate = state
+              end,
+            })
+            :map("<leader>ta")
 
-          Snacks.toggle.new({
-            id = "scroll_anima",
-            name = "Scroll animation",
-            get = function()
-              return Snacks.scroll.enabled
-            end,
-            set = function(state)
-              if state then
-                Snacks.scroll.enable()
-              else
-                Snacks.scroll.disable()
-              end
-            end,
-          }):map("<leader>tS")
+          Snacks.toggle
+            .new({
+              id = "scroll_anima",
+              name = "Scroll animation",
+              get = function()
+                return Snacks.scroll.enabled
+              end,
+              set = function(state)
+                if state then
+                  Snacks.scroll.enable()
+                else
+                  Snacks.scroll.disable()
+                end
+              end,
+            })
+            :map("<leader>tS")
 
           -- Create some toggle mappings
           Snacks.toggle.dim():map("<leader>tD")
@@ -221,8 +226,9 @@ return {
           Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>tL")
           Snacks.toggle.diagnostics():map("<leader>td")
           Snacks.toggle.line_number():map("<leader>tl")
-          Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
-            "<leader>tc")
+          Snacks.toggle
+            .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+            :map("<leader>tc")
           Snacks.toggle.treesitter():map("<leader>tT")
           Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>tb")
           Snacks.toggle.inlay_hints():map("<leader>th")
@@ -242,5 +248,5 @@ return {
         end,
       })
     end,
-  }
+  },
 }

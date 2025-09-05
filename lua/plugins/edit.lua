@@ -7,11 +7,11 @@ return {
     },
   },
 
-  {
-    "cappyzawa/trim.nvim",
-    event = "BufWritePre",
-    opts = {},
-  },
+  -- {
+  --   "cappyzawa/trim.nvim",
+  --   event = "BufWritePre",
+  --   opts = {},
+  -- },
 
   {
     "mbbill/undotree",
@@ -42,8 +42,8 @@ return {
       { "<leader>/", function() require("Comment.api").toggle.linewise.current() end,                 mode = "n", desc = "[Comment] Comment current line", },
       { "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", mode = "v", desc = "Comment current line", },
       -- control + / keymappings
-      -- { "<C-_>",     function() require("Comment.api").toggle.linewise.current() end,                 mode = "n", desc = "[Comment] Comment current line", },
-      -- { "<C-_>",     "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", mode = "v", desc = "Comment current line", },
+      { "<D-/>",     function() require("Comment.api").toggle.linewise.current() end,                 mode = "n", desc = "[Comment] Comment current line", },
+      { "<D-/>",     "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", mode = "v", desc = "Comment current line", },
     },
     config = true,
   },
@@ -122,7 +122,7 @@ return {
     "folke/todo-comments.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "folke/snacks.nvim"
+      "folke/snacks.nvim",
     },
     event = "VeryLazy",
     -- stylua: ignore
@@ -160,8 +160,22 @@ return {
     event = "BufReadPost",
     keys = {
       -- Append/insert for each line of visual selections. Similar to block selection insertion.
-      { "mI", function() require("multicursor-nvim").insertVisual() end, mode = "x", desc = "Insert cursors at visual selection" },
-      { "mA", function() require("multicursor-nvim").appendVisual() end, mode = "x", desc = "Append cursors at visual selection" },
+      {
+        "mI",
+        function()
+          require("multicursor-nvim").insertVisual()
+        end,
+        mode = "x",
+        desc = "Insert cursors at visual selection",
+      },
+      {
+        "mA",
+        function()
+          require("multicursor-nvim").appendVisual()
+        end,
+        mode = "x",
+        desc = "Append cursors at visual selection",
+      },
     },
     config = function()
       local mc = require("multicursor-nvim")

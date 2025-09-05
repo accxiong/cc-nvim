@@ -26,11 +26,12 @@ return {
       require("utils.codecompanion_fidget_spinner"):init()
     end,
 
+    -- stylua: ignore
     keys = {
       { "<leader>cca", "<CMD>CodeCompanionActions<CR>",     mode = { "n", "v" }, noremap = true, silent = true, desc = "CodeCompanion actions" },
       { "<leader>cci", "<CMD>CodeCompanion<CR>",            mode = { "n", "v" }, noremap = true, silent = true, desc = "CodeCompanion inline" },
       { "<leader>ccc", "<CMD>CodeCompanionChat Toggle<CR>", mode = { "n", "v" }, noremap = true, silent = true, desc = "CodeCompanion chat (toggle)" },
-      { "<leader>ccp", "<CMD>CodeCompanionChat Add<CR>",    mode = { "v" },      noremap = true, silent = true, desc = "CodeCompanion chat add code" },
+      { "<leader>ccp", "<CMD>CodeCompanionChat Add<CR>",    mode = { "v" },    noremap = true, silent = true, desc = "CodeCompanion chat add code" },
     },
 
     opts = {
@@ -50,8 +51,5 @@ return {
         language = "English", -- "English"|"Chinese"
       },
     },
-
-
   },
-
 }

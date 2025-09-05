@@ -9,6 +9,7 @@ return {
       },
       transparent_background = true,
       custom_highlights = function(colors)
+        -- stylua: ignore
         return {
           LineNr     = { fg = colors.surface2 },
           Visual     = { bg = colors.overlay0 },
@@ -31,12 +32,14 @@ return {
           indent_scope_color = "flamingo", -- catppuccin color (eg. `lavender`) Default: text
         },
         which_key = true,
-      }
+        flash = true,
+        lsp_trouble = true,
+      },
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
 
       vim.cmd.colorscheme("catppuccin")
-    end
+    end,
   },
 }
