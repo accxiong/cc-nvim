@@ -12,7 +12,7 @@ return {
           "html",
           "javascript",
           "json",
-          "lua",
+          -- "lua",
           "rust",
           "typescript",
           "vim",

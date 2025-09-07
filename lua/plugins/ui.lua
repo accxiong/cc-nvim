@@ -135,7 +135,8 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     keys = {
-      { "<leader>e", "<CMD>NvimTreeToggle<CR>", mode = { "n" }, desc = "[NvimTree] Toggle NvimTree" },
+      { "<leader>e",  "<CMD>NvimTreeToggle<CR>", mode = { "n" }, desc = "[NvimTree] Toggle NvimTree" },
+      { "<leader>nn", "<CMD>NvimTreeToggle<CR>", mode = { "n" }, desc = "[NvimTree] Toggle NvimTree" },
     },
     opts = {},
   },
@@ -160,7 +161,7 @@ return {
     },
     keys = {
       { "<leader>sN", "<CMD>Noice pick<CR>", desc = "[Noice] Pick history messages" },
-      { "<leader>N", "<CMD>Noice<CR>", desc = "[Noice] Show history messages" },
+      { "<leader>N",  "<CMD>Noice<CR>",      desc = "[Noice] Show history messages" },
     },
 
     opts = {
@@ -180,17 +181,17 @@ return {
       },
       -- you can enable a preset for easier configuration
       presets = {
-        bottom_search = false, -- use a classic bottom cmdline for search
-        command_palette = false, -- position the cmdline and popupmenu together
+        bottom_search = false,        -- use a classic bottom cmdline for search
+        command_palette = false,      -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = true, -- add a border to hover docs and signature help
+        inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = true,        -- add a border to hover docs and signature help
       },
       routes = {
         -- Hide search count
         { filter = { event = "msg_show", kind = "search_count" }, opts = { skip = true } },
         -- Hide written message
-        { filter = { event = "msg_show", kind = "" }, opts = { skip = true } },
+        { filter = { event = "msg_show", kind = "" },             opts = { skip = true } },
       },
     },
   },
@@ -297,27 +298,27 @@ return {
 
         -- Toggles
         require("snacks")
-          .toggle({
-            name = "line blame",
-            get = function()
-              return require("gitsigns.config").config.current_line_blame
-            end,
-            set = function(enabled)
-              require("gitsigns").toggle_current_line_blame(enabled)
-            end,
-          })
-          :map("<leader>tgb")
+            .toggle({
+              name = "line blame",
+              get = function()
+                return require("gitsigns.config").config.current_line_blame
+              end,
+              set = function(enabled)
+                require("gitsigns").toggle_current_line_blame(enabled)
+              end,
+            })
+            :map("<leader>tgb")
         require("snacks")
-          .toggle({
-            name = "word diff",
-            get = function()
-              return require("gitsigns.config").config.word_diff
-            end,
-            set = function(enabled)
-              require("gitsigns").toggle_word_diff(enabled)
-            end,
-          })
-          :map("<leader>tgw")
+            .toggle({
+              name = "word diff",
+              get = function()
+                return require("gitsigns.config").config.word_diff
+              end,
+              set = function(enabled)
+                require("gitsigns").toggle_word_diff(enabled)
+              end,
+            })
+            :map("<leader>tgw")
       end,
     },
     config = function(_, opts)
@@ -359,7 +360,7 @@ return {
     opts = {
       handelers = {
         gitsigns = true, -- Requires gitsigns
-        search = true, -- Requires hlslens
+        search = true,   -- Requires hlslens
       },
       marks = {
         Search = {
@@ -383,7 +384,7 @@ return {
       { "g*", "g*<Cmd>lua require('hlslens').start()<CR>",  mode = "n", desc = "Next match",      noremap = true, silent = true },
       { "g#", "g#<Cmd>lua require('hlslens').start()<CR>",  mode = "n", desc = "Previous match",  noremap = true, silent = true },
       { "//", "<Cmd>noh<CR>",                               mode = "n", desc = "Clear highlight", noremap = true, silent = true },
-
+      -- { "<leader>nh", "<Cmd>noh<CR>",                       mode = "n", desc = "Clear highlight", noremap = true, silent = true },
       { "/" },
       { "?" },
     },
@@ -475,7 +476,7 @@ return {
     init = function()
       vim.o.foldenable = true
       vim.o.foldcolumn = "0" -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.opt.fillchars = {
         fold = " ",
@@ -561,8 +562,8 @@ return {
     -- stylua: ignore
     keys = {
       { "<leader>E",  "<CMD>Yazi<CR>",        desc = "[Yazi] open at the current file", mode = { "n", "v" } },
-      { "<leader>cw", "<CMD>Yazi cwd<CR>",    desc = "[Yazi] open in working directory"                     },
-      { "<c-up>",     "<CMD>Yazi toggle<CR>", desc = "[Yazi] Resume the last session"                       },
+      { "<leader>cw", "<CMD>Yazi cwd<CR>",    desc = "[Yazi] open in working directory" },
+      { "<c-up>",     "<CMD>Yazi toggle<CR>", desc = "[Yazi] Resume the last session" },
     },
     opts = {
       open_for_directories = false,

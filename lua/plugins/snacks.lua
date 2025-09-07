@@ -122,7 +122,11 @@ return {
     keys = {
       { "<A-w>",           function() require("snacks").bufdelete() end,                    desc = "[Snacks] Delete buffer" },
       { "<leader>si",      function() require("snacks").image.hover() end,                  desc = "[Snacks] Display image" },
-      { "<A-i>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
+      -- { "<A-i>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
+      { "<D-j>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
+      -- explorer
+      -- { "<leader>e",       function() require("snacks").explorer() end,                     desc = "[Snacks] Delete buffer" },
+      -- { "<D-b>",           function() require("snacks").explorer() end,                     desc = "[Snacks] Delete buffer" },
       -- Notification
       { "<leader>sn",      function() require("snacks").picker.notifications() end,         desc = "[Snacks] Notification history" },
       { "<leader>n",       function() require("snacks").notifier.show_history() end,        desc = "[Snacks] Notification history" },
@@ -134,6 +138,7 @@ return {
       -- find
       { "<leader>sb",      function() require("snacks").picker.buffers() end,               desc = "[Snacks] Buffers" },
       { "<leader>sf",      function() require("snacks").picker.files() end,                 desc = "[Snacks] Find files" },
+      { "<D-p>",           function() require("snacks").picker.files() end,                 desc = "[Snacks] Find files" },
       { "<leader>sp",      function() require("snacks").picker.projects() end,              desc = "[Snacks] Projects" },
       { "<leader>sr",      function() require("snacks").picker.recent() end,                desc = "[Snacks] Recent" },
       -- git
@@ -146,6 +151,7 @@ return {
       -- { "<leader>sb", function() require("snacks").picker.lines() end, desc = "[Snacks] Buffer lines" },
       -- { "<leader>sB", function() require("snacks").picker.grep_buffers() end, desc = "[Snacks] Grep open buffers" },
       { "<leader>sg",      function() require("snacks").picker.grep() end,                  desc = "[Snacks] Grep" },
+      { "<D-S-f>",         function() require("snacks").picker.grep() end,                  desc = "[Snacks] Grep" },
       -- { "<leader>sw", function() require("snacks").picker.grep_word() end, desc = "[Snacks] Visual selection or word", mode = { "n", "x" } },
       -- search
       { '<leader>s"',      function() require("snacks").picker.registers() end,             desc = "[Snacks] Registers" },

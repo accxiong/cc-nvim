@@ -83,6 +83,7 @@ return {
     keys = {
       -- stylua: ignore
       { "<leader>f", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "[Flash] Jump" },
+      { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "[Flash] Jump" },
       -- stylua: ignore
       { "<leader>F", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "[Flash] Treesitter" },
       -- stylua: ignore

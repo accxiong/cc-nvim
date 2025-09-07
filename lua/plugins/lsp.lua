@@ -3,7 +3,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "lua-language-server",
+        -- "lua-language-server",
       },
     },
     config = function(_, opts)
@@ -28,6 +28,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "saghen/blink.cmp", "williamboman/mason.nvim" },
 
+    enabled = not vim.g.vscode and true or false,
     -- example calling setup directly for each LSP
     config = function()
       vim.diagnostic.config({
@@ -72,24 +73,24 @@ return {
       })
     end,
   },
-  {
-    "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
-    opts = {
-      library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
-  },
+  -- {
+  --   "folke/lazydev.nvim",
+  --   ft = "lua", -- only load on lua files
+  --   opts = {
+  --     library = {
+  --       -- See the configuration section for more details
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+  --     },
+  --   },
+  -- },
 
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
     opts = {
       formatters_by_ft = {
-        lua = { "stylua" },
+        -- lua = { "stylua" },
         python = { "isort", "black" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         go = { "goimports", "gofmt" },
