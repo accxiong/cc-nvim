@@ -1,3 +1,4 @@
+local map = vim.keymap.set
 -- vim.keymap.set("i", "<C-h>", "<Left>")
 -- vim.keymap.set("i", "<C-l>", "<Right>")
 -- vim.keymap.set("i", "<C-j>", "<Down>")
@@ -19,3 +20,13 @@ vim.keymap.set({ "n", "x" }, "Q", "<CMD>:qa<CR>")
 vim.keymap.set({ "n", "x" }, "qq", "<CMD>:q<CR>")
 
 vim.keymap.set("n", "<A-z>", "<CMD>set wrap!<CR>", { desc = "Toggle line wrap" })
+
+map("n", "<S-Left>", "<C-w>h", { desc = "切换到左侧窗口", noremap = true, silent = true })
+map("n", "<S-Right>", "<C-w>l", { desc = "切换到右侧窗口", noremap = true, silent = true })
+map("n", "<S-Up>", "<C-w>k", { desc = "切换到上方窗口", noremap = true, silent = true })
+map("n", "<S-Down>", "<C-w>j", { desc = "切换到下方窗口", noremap = true, silent = true })
+
+map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
+map({ "n" }, "die", "ggdG", { silent = true })     -- 删除整个文件内容
+map({ "n" }, "yie", "ggyG", { silent = true })     -- 复制整个文件内容
+map({ "n" }, "cie", "ggcG", { silent = true })     --

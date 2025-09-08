@@ -1,2 +1,5 @@
 require("core.basic")
-require("core.keymaps")
+
+if not vim.g.vscode then
+  require("core.keymaps")
+end
