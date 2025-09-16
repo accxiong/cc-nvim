@@ -2,8 +2,8 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
 
 vim.opt.number = true
 vim.wo.cursorline = true -- 行高亮
@@ -67,3 +67,17 @@ vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
+
+
+
+vim.o.tabstop = 4                -- Tab 显示为 4 个空格宽度
+vim.bo.tabstop = 4
+vim.o.softtabstop = 4            -- 插入模式下 Tab 的软宽度
+vim.o.shiftround = true          -- >> << 时对齐到 shiftwidth 的倍数
+vim.o.shiftwidth = 4             -- 自动缩进时每级缩进为 4 个空格
+vim.bo.shiftwidth = 4
+vim.o.expandtab = true           -- 将 Tab 转为空格
+vim.bo.expandtab = true
+vim.o.autoindent = true          -- 自动继承上一行缩进
+vim.bo.autoindent = true
+vim.o.smartindent = true         -- 根据语法自动缩进

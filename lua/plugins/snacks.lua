@@ -122,7 +122,7 @@ return {
     keys = {
       { "<A-w>",           function() require("snacks").bufdelete() end,                    desc = "[Snacks] Delete buffer" },
       { "<leader>si",      function() require("snacks").image.hover() end,                  desc = "[Snacks] Display image" },
-      -- { "<A-i>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
+      { "<A-i>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
       { "<D-j>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
       -- explorer
       -- { "<leader>e",       function() require("snacks").explorer() end,                     desc = "[Snacks] Delete buffer" },

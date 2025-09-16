@@ -2,6 +2,16 @@ local is_vscode = vim.g.vscode
 local unmap = vim.keymap.del
 local map = vim.keymap.set
 
+map({ "v", "o" }, "w", "iw", { silent = true })
+map({ "v", "o" }, "ii", "i{", { silent = true })
+map({ "v", "o" }, "ai", "a{", { silent = true })
+map({ "v", "o" }, "ib", "i(", { silent = true })
+
+map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
+map({ "n" }, "die", "ggdG", { silent = true }) -- 删除整个文件内容
+map({ "n" }, "yie", "ggyG", { silent = true }) -- 复制整个文件内容
+map({ "n" }, "cie", "ggcG", { silent = true }) --
+
 -- VSCode环境的下划线修复
 if is_vscode then
   -- 禁用诊断和清除下划线高亮
@@ -96,7 +106,6 @@ if vim.g.vscode then
   end, { desc = "Window move down" })
 end
 
-
 -- 折叠相关
 if vim.g.vscode then
   -- 使用 za 切换折叠，通过 VSCode 命令
@@ -169,9 +178,6 @@ end
 -- VSCode 下修改 keybindings.json 添加如下配置
 -- { "key": "ctrl+d", "command": "cursorMove", "when": "editorTextFocus && neovim.mode != 'insert'", "args": { "to": "down", "by": "line", "value": 9, "revealCursor": true } },
 -- { "key": "ctrl+u", "command": "cursorMove", "when": "editorTextFocus && neovim.mode != 'insert'", "args": { "to": "up", "by": "line", "value": 9, "revealCursor": true
-
-
-
 
 -- VSCode 环境下禁用一些快捷键
 if vim.g.vscode then
