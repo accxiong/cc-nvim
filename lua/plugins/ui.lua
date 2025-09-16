@@ -131,6 +131,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
+    enabled = false,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },

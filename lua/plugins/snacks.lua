@@ -11,7 +11,9 @@ return {
       -- refer to the configuration section below
       bigfile = { enabled = true },
       dashboard = { enabled = true },
-      explorer = { enabled = false },
+      explorer = {
+        enabled = true,
+      },
       image = {
         enabled = true,
         doc = { inline = false, float = false, max_width = 80, max_height = 40 },
@@ -56,6 +58,10 @@ return {
           },
         },
         sources = {
+          explorer = {
+            hidden = true,    -- show hidden files (files starting with .)
+            ignored = true,   -- show git ignored files
+          },
           spelling = {
             layout = { preset = "select" },
           },
@@ -125,8 +131,8 @@ return {
       { "<A-i>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
       { "<D-j>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
       -- explorer
-      -- { "<leader>e",       function() require("snacks").explorer() end,                     desc = "[Snacks] Delete buffer" },
-      -- { "<D-b>",           function() require("snacks").explorer() end,                     desc = "[Snacks] Delete buffer" },
+      { "<leader>e",       function() require("snacks").explorer() end,                     desc = "[Snacks] Explorer" },
+      { "<D-b>",           function() require("snacks").explorer() end,                     desc = "[Snacks] Explorer" },
       -- Notification
       { "<leader>sn",      function() require("snacks").picker.notifications() end,         desc = "[Snacks] Notification history" },
       { "<leader>n",       function() require("snacks").notifier.show_history() end,        desc = "[Snacks] Notification history" },
@@ -170,7 +176,7 @@ return {
       { "<leader>sl",      function() require("snacks").picker.loclist() end,               desc = "[Snacks] Location list" },
       { "<leader>sm",      function() require("snacks").picker.marks() end,                 desc = "[Snacks] Marks" },
       { "<leader>sM",      function() require("snacks").picker.man() end,                   desc = "[Snacks] Man pages" },
-      { "<leader>sp",      function() require("snacks").picker.lazy() end,                  desc = "[Snacks] Search for plugin spec" },
+      { "<leader>sP",      function() require("snacks").picker.lazy() end,                  desc = "[Snacks] Search for plugin spec" },
       { "<leader>sq",      function() require("snacks").picker.qflist() end,                desc = "[Snacks] Quickfix list" },
       { "<leader>sr",      function() require("snacks").picker.resume() end,                desc = "[Snacks] Resume" },
       { "<leader>su",      function() require("snacks").picker.undo() end,                  desc = "[Snacks] Undo history" },
