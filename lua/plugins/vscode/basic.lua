@@ -3,7 +3,7 @@
 vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "ColorScheme" }, {
   callback = function()
     vim.schedule(function()
-      vim.diagnostic.disable()
+      vim.diagnostic.enable(false)
 
       -- 清除下划线相关的高亮组
       local underline_groups = {
@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter", "ColorScheme" }, {
 
 -- 延迟处理LSP相关下划线
 vim.defer_fn(function()
-  vim.diagnostic.disable()
+  vim.diagnostic.enable(false)
 
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -37,3 +37,6 @@ vim.defer_fn(function()
     end,
   })
 end, 1000)
+
+-- 返回空table以满足Lazy.nvim的要求
+return {}
