@@ -59,8 +59,8 @@ return {
         },
         sources = {
           explorer = {
-            hidden = true,    -- show hidden files (files starting with .)
-            ignored = true,   -- show git ignored files
+            hidden = true,  -- show hidden files (files starting with .)
+            ignored = true, -- show git ignored files
           },
           spelling = {
             layout = { preset = "select" },
@@ -126,74 +126,137 @@ return {
 
     -- stylua: ignore
     keys = {
-      { "<A-w>",           function() require("snacks").bufdelete() end,                    desc = "[Snacks] Delete buffer" },
-      { "<leader>si",      function() require("snacks").image.hover() end,                  desc = "[Snacks] Display image" },
-      { "<A-i>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
-      { "<D-j>",           function() require("snacks").terminal() end,                     desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
+      { "<A-w>",           function() require("snacks").bufdelete() end,                 desc = "[Snacks] Delete buffer" },
+      { "<leader>si",      function() require("snacks").image.hover() end,               desc = "[Snacks] Display image" },
+      { "<A-i>",           function() require("snacks").terminal() end,                  desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
+      { "<D-j>",           function() require("snacks").terminal() end,                  desc = "[Snacks] Toggle terminal",          mode = { "n", "t" } },
       -- explorer
-      { "<leader>e",       function() require("snacks").explorer() end,                     desc = "[Snacks] Explorer" },
-      { "<D-b>",           function() require("snacks").explorer() end,                     desc = "[Snacks] Explorer" },
+      { "<leader>e",       function() require("snacks").explorer() end,                  desc = "[Snacks] Explorer" },
+      { "<D-b>",           function() require("snacks").explorer() end,                  desc = "[Snacks] Explorer" },
       -- Notification
-      { "<leader>sn",      function() require("snacks").picker.notifications() end,         desc = "[Snacks] Notification history" },
-      { "<leader>n",       function() require("snacks").notifier.show_history() end,        desc = "[Snacks] Notification history" },
-      { "<leader>un",      function() require("snacks").notifier.hide() end,                desc = "[Snacks] Dismiss all notifications" },
+      { "<leader>sn",      function() require("snacks").picker.notifications() end,      desc = "[Snacks] Notification history" },
+      { "<leader>n",       function() require("snacks").notifier.show_history() end,     desc = "[Snacks] Notification history" },
+      { "<leader>un",      function() require("snacks").notifier.hide() end,             desc = "[Snacks] Dismiss all notifications" },
       -- Top Pickers & Explorer
-      { "<leader><space>", function() require("snacks").picker.smart() end,                 desc = "[Snacks] Smart find files" },
-      { "<leader>,",       function() require("snacks").picker.buffers() end,               desc = "[Snacks] Buffers" },
-      { "<leader>sn",      function() require("snacks").picker.notifications() end,         desc = "[Snacks] Notification history" },
+      { "<leader><space>", function() require("snacks").picker.smart() end,              desc = "[Snacks] Smart find files" },
+      { "<leader>,",       function() require("snacks").picker.buffers() end,            desc = "[Snacks] Buffers" },
+      { "<leader>sn",      function() require("snacks").picker.notifications() end,      desc = "[Snacks] Notification history" },
       -- find
-      { "<leader>sb",      function() require("snacks").picker.buffers() end,               desc = "[Snacks] Buffers" },
-      { "<leader>sf",      function() require("snacks").picker.files() end,                 desc = "[Snacks] Find files" },
-      { "<D-p>",           function() require("snacks").picker.files() end,                 desc = "[Snacks] Find files" },
-      { "<leader>sp",      function() require("snacks").picker.projects() end,              desc = "[Snacks] Projects" },
-      { "<leader>sr",      function() require("snacks").picker.recent() end,                desc = "[Snacks] Recent" },
+      { "<leader>sb",      function() require("snacks").picker.buffers() end,            desc = "[Snacks] Buffers" },
+      { "<leader>sf",      function() require("snacks").picker.files() end,              desc = "[Snacks] Find files" },
+      { "<D-p>",           function() require("snacks").picker.files() end,              desc = "[Snacks] Find files" },
+      { "<leader>sp",      function() require("snacks").picker.projects() end,           desc = "[Snacks] Projects" },
+      { "<leader>sr",      function() require("snacks").picker.recent() end,             desc = "[Snacks] Recent" },
       -- git
-      { "<C-g>",           function() require("snacks").lazygit() end,                      desc = "[Snacks] Lazygit" },
-      { "<leader>ggl",     function() require("snacks").picker.git_log() end,               desc = "[Snacks] Git log" },
-      { "<leader>ggd",     function() require("snacks").picker.git_diff() end,              desc = "[Snacks] Git diff" },
-      { "<leader>ggb",     function() require("snacks").git.blame_line() end,               desc = "[Snacks] Git blame line" },
-      { "<leader>ggB",     function() require("snacks").gitbrowse() end,                    desc = "[Snacks] Git browse" },
+      { "<C-g>",           function() require("snacks").lazygit() end,                   desc = "[Snacks] Lazygit" },
+      { "<leader>ggl",     function() require("snacks").picker.git_log() end,            desc = "[Snacks] Git log" },
+      { "<leader>ggd",     function() require("snacks").picker.git_diff() end,           desc = "[Snacks] Git diff" },
+      { "<leader>ggb",     function() require("snacks").git.blame_line() end,            desc = "[Snacks] Git blame line" },
+      { "<leader>ggB",     function() require("snacks").gitbrowse() end,                 desc = "[Snacks] Git browse" },
       -- Grep
       -- { "<leader>sb", function() require("snacks").picker.lines() end, desc = "[Snacks] Buffer lines" },
       -- { "<leader>sB", function() require("snacks").picker.grep_buffers() end, desc = "[Snacks] Grep open buffers" },
-      { "<leader>sg",      function() require("snacks").picker.grep() end,                  desc = "[Snacks] Grep" },
-      { "<D-S-f>",         function() require("snacks").picker.grep() end,                  desc = "[Snacks] Grep" },
+      { "<leader>sg",      function() require("snacks").picker.grep() end,               desc = "[Snacks] Grep" },
+      { "<D-S-f>",         function() require("snacks").picker.grep() end,               desc = "[Snacks] Grep" },
       -- { "<leader>sw", function() require("snacks").picker.grep_word() end, desc = "[Snacks] Visual selection or word", mode = { "n", "x" } },
       -- search
-      { '<leader>s"',      function() require("snacks").picker.registers() end,             desc = "[Snacks] Registers" },
-      { '<leader>s/',      function() require("snacks").picker.search_history() end,        desc = "[Snacks] Search history" },
-      { "<leader>sa",      function() require("snacks").picker.spelling() end,              desc = "[Snacks] Spelling" },
-      { "<leader>sA",      function() require("snacks").picker.autocmds() end,              desc = "[Snacks] Autocmds" },
-      { "<leader>s:",      function() require("snacks").picker.command_history() end,       desc = "[Snacks] Command history" },
-      { "<leader>sc",      function() require("snacks").picker.commands() end,              desc = "[Snacks] Commands" },
-      { "<leader>sd",      function() require("snacks").picker.diagnostics() end,           desc = "[Snacks] Diagnostics" },
-      { "<leader>sD",      function() require("snacks").picker.diagnostics_buffer() end,    desc = "[Snacks] Diagnostics buffer" },
-      { "<leader>sH",      function() require("snacks").picker.help() end,                  desc = "[Snacks] Help pages" },
-      { "<leader>sh",      function() require("snacks").picker.highlights() end,            desc = "[Snacks] Highlights" },
-      { "<leader>sI",      function() require("snacks").picker.icons() end,                 desc = "[Snacks] Icons" },
-      { "<leader>sj",      function() require("snacks").picker.jumps() end,                 desc = "[Snacks] Jumps" },
-      { "<leader>sk",      function() require("snacks").picker.keymaps() end,               desc = "[Snacks] Keymaps" },
-      { "<leader>sl",      function() require("snacks").picker.loclist() end,               desc = "[Snacks] Location list" },
-      { "<leader>sm",      function() require("snacks").picker.marks() end,                 desc = "[Snacks] Marks" },
-      { "<leader>sM",      function() require("snacks").picker.man() end,                   desc = "[Snacks] Man pages" },
-      { "<leader>sP",      function() require("snacks").picker.lazy() end,                  desc = "[Snacks] Search for plugin spec" },
-      { "<leader>sq",      function() require("snacks").picker.qflist() end,                desc = "[Snacks] Quickfix list" },
-      { "<leader>sr",      function() require("snacks").picker.resume() end,                desc = "[Snacks] Resume" },
-      { "<leader>su",      function() require("snacks").picker.undo() end,                  desc = "[Snacks] Undo history" },
+      { '<leader>s"',      function() require("snacks").picker.registers() end,          desc = "[Snacks] Registers" },
+      { '<leader>s/',      function() require("snacks").picker.search_history() end,     desc = "[Snacks] Search history" },
+      { "<leader>sa",      function() require("snacks").picker.spelling() end,           desc = "[Snacks] Spelling" },
+      { "<leader>sA",      function() require("snacks").picker.autocmds() end,           desc = "[Snacks] Autocmds" },
+      { "<leader>s:",      function() require("snacks").picker.command_history() end,    desc = "[Snacks] Command history" },
+      { "<leader>sc",      function() require("snacks").picker.commands() end,           desc = "[Snacks] Commands" },
+      { "<leader>sd",      function() require("snacks").picker.diagnostics() end,        desc = "[Snacks] Diagnostics" },
+      { "<leader>sD",      function() require("snacks").picker.diagnostics_buffer() end, desc = "[Snacks] Diagnostics buffer" },
+      { "<leader>sH",      function() require("snacks").picker.help() end,               desc = "[Snacks] Help pages" },
+      { "<leader>sh",      function() require("snacks").picker.highlights() end,         desc = "[Snacks] Highlights" },
+      { "<leader>sI",      function() require("snacks").picker.icons() end,              desc = "[Snacks] Icons" },
+      { "<leader>sj",      function() require("snacks").picker.jumps() end,              desc = "[Snacks] Jumps" },
+      { "<leader>sk",      function() require("snacks").picker.keymaps() end,            desc = "[Snacks] Keymaps" },
+      { "<leader>sl",      function() require("snacks").picker.loclist() end,            desc = "[Snacks] Location list" },
+      { "<leader>sm",      function() require("snacks").picker.marks() end,              desc = "[Snacks] Marks" },
+      { "<leader>sM",      function() require("snacks").picker.man() end,                desc = "[Snacks] Man pages" },
+      { "<leader>sP",      function() require("snacks").picker.lazy() end,               desc = "[Snacks] Search for plugin spec" },
+      { "<leader>sq",      function() require("snacks").picker.qflist() end,             desc = "[Snacks] Quickfix list" },
+      { "<leader>sr",      function() require("snacks").picker.resume() end,             desc = "[Snacks] Resume" },
+      { "<leader>su",      function() require("snacks").picker.undo() end,               desc = "[Snacks] Undo history" },
       -- LSP
-      { "gd",              function() require("snacks").picker.lsp_definitions() end,       desc = "[Snacks] Goto definition" },
-      { "gD",              function() require("snacks").picker.lsp_declarations() end,      desc = "[Snacks] Goto declaration" },
-      { "gr",              function() require("snacks").picker.lsp_references() end,        desc = "[Snacks] References" },
-      { "gI",              function() require("snacks").picker.lsp_implementations() end,   desc = "[Snacks] Goto implementation" },
-      { "gy",              function() require("snacks").picker.lsp_type_definitions() end,  desc = "[Snacks] Goto t[y]pe definition" },
-      { "<leader>ss",      function() require("snacks").picker.lsp_symbols() end,           desc = "[Snacks] LSP symbols" },
-      { "<leader>sS",      function() require("snacks").picker.lsp_workspace_symbols() end, desc = "[Snacks] LSP workspace symbols" },
+      -- { "gd",              function() require("snacks").picker.lsp_definitions() end,       desc = "[Snacks] Goto definition", nowait = true },
+      {
+        "gd",
+        function()
+          local Snacks = require("snacks")
+          local params = vim.lsp.util.make_position_params()
+          local responses = vim.lsp.buf_request_sync(0, "textDocument/definition", params, 800)
+
+          local definitions = {}
+          for _, res in pairs(responses or {}) do
+            local result = res.result
+            if result then
+              if vim.tbl_islist(result) then
+                vim.list_extend(definitions, result)
+              else
+                table.insert(definitions, result)
+              end
+            end
+          end
+
+          local current_uri = vim.uri_from_bufnr(0)
+          local cursor = vim.api.nvim_win_get_cursor(0)
+          local row = cursor[1] - 1
+          local col = cursor[2]
+
+          local function is_same_location(loc)
+            local uri = loc.uri or loc.targetUri
+            if not uri or uri ~= current_uri then
+              return false
+            end
+            local range = loc.range or loc.targetSelectionRange or loc.targetRange
+            if not range or not range.start or not range["end"] then
+              return false
+            end
+            local s = range.start
+            local e = range["end"]
+            if row < s.line or row > e.line then
+              return false
+            end
+            if row == s.line and col < s.character then
+              return false
+            end
+            if row == e.line and col > e.character then
+              return false
+            end
+            return true
+          end
+
+          local has_other_location = false
+          for _, loc in ipairs(definitions) do
+            if not is_same_location(loc) then
+              has_other_location = true
+              break
+            end
+          end
+
+          if has_other_location then
+            Snacks.picker.lsp_definitions({ include_current = false })
+          else
+            Snacks.picker.lsp_references({ include_current = false, include_declaration = false })
+          end
+        end,
+        desc = "[Snacks] Goto definition"
+      },
+      { "gD",         function() require("snacks").picker.lsp_declarations() end,      desc = "[Snacks] Goto declaration" },
+      { "gr",         function() require("snacks").picker.lsp_references() end,        desc = "[Snacks] References",            nowait = true },
+      { "gI",         function() require("snacks").picker.lsp_implementations() end,   desc = "[Snacks] Goto implementation" },
+      { "gy",         function() require("snacks").picker.lsp_type_definitions() end,  desc = "[Snacks] Goto t[y]pe definition" },
+      { "<leader>ss", function() require("snacks").picker.lsp_symbols() end,           desc = "[Snacks] LSP symbols" },
+      { "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols() end, desc = "[Snacks] LSP workspace symbols" },
       -- Words
-      { "]]",              function() require("snacks").words.jump(vim.v.count1) end,       desc = "[Snacks] Next Reference",           mode = { "n", "t" } },
-      { "[[",              function() require("snacks").words.jump(-vim.v.count1) end,      desc = "[Snacks] Prev Reference",           mode = { "n", "t" } },
+      { "]]",         function() require("snacks").words.jump(vim.v.count1) end,       desc = "[Snacks] Next Reference",        mode = { "n", "t" } },
+      { "[[",         function() require("snacks").words.jump(-vim.v.count1) end,      desc = "[Snacks] Prev Reference",        mode = { "n", "t" } },
       -- Zen mode
-      { "<leader>z",       function() require("snacks").zen() end,                          desc = "[Snacks] Toggle Zen Mode" },
-      { "<leader>Z",       function() require("snacks").zen.zoom() end,                     desc = "[Snacks] Toggle Zoom" },
+      { "<leader>z",  function() require("snacks").zen() end,                          desc = "[Snacks] Toggle Zen Mode" },
+      { "<leader>Z",  function() require("snacks").zen.zoom() end,                     desc = "[Snacks] Toggle Zoom" },
     },
 
     init = function()

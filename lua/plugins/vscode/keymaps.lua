@@ -8,9 +8,17 @@ map({ "v", "o" }, "ai", "a{", { silent = true })
 map({ "v", "o" }, "ib", "i(", { silent = true })
 
 map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
-map({ "n" }, "die", "ggdG", { silent = true }) -- 删除整个文件内容
-map({ "n" }, "yie", "ggyG", { silent = true }) -- 复制整个文件内容
-map({ "n" }, "cie", "ggcG", { silent = true }) --
+map({ "n" }, "die", "ggdG", { silent = true })     -- 删除整个文件内容
+map({ "n" }, "yie", "ggyG", { silent = true })     -- 复制整个文件内容
+map({ "n" }, "cie", "ggcG", { silent = true })     --
+
+
+vim.keymap.set("i", "jk", "<Esc>", { silent = true })
+vim.keymap.set({ "n", "x" }, "<S-H>", "^", { desc = "Start of line" })
+vim.keymap.set({ "n", "x" }, "<S-L>", "$", { desc = "End of line" })
+vim.keymap.set("n", "y<S-H>", "y^", { desc = "Yank from start of line" })
+vim.keymap.set("n", "y<S-L>", "y$", { desc = "Yank to end of line" })
+
 
 -- keymap
 
@@ -19,6 +27,7 @@ if vim.g.vscode then
   map("n", "j", "gj", { remap = true, desc = "Move down (skip folds)", silent = true })
   map("n", "k", "gk", { remap = true, desc = "Move up (skip folds)", silent = true })
 end
+
 -- vscode 窗口移动快捷键
 if vim.g.vscode then
   -- map("n", "<S-Left>", "<cmd>lua require('vscode').call('workbench.action.navigateLeft')<CR>", { desc = "Window move left" })

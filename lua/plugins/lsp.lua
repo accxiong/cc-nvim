@@ -30,8 +30,14 @@ return {
     dependencies = { "saghen/blink.cmp", "williamboman/mason.nvim" },
 
     enabled = not vim.g.vscode and true or false,
-    -- example calling setup directly for each LSP
-    config = function()
+    opts = {
+      servers = {
+        lua_ls = {},
+        vtsls = {},
+        gopls = {},
+      },
+    },
+    config = function(_, opts)
       vim.diagnostic.config({
         underline = false,
         signs = false,
@@ -44,9 +50,17 @@ return {
       })
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
-      local lspconfig = require("lspconfig")
 
-      lspconfig["lua_ls"].setup({ capabilities = capabilities })
+      -- Configure LSP servers using new vim.lsp.config API
+      for server_name, server_config in pairs(opts.servers or {}) do
+        local config = vim.tbl_deep_extend("force", {
+          capabilities = capabilities,
+        }, server_config or {})
+        vim.lsp.config(server_name, config)
+      end
+
+      -- Enable all configured servers
+      vim.lsp.enable(vim.tbl_keys(opts.servers or {}))
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
@@ -74,17 +88,6 @@ return {
       })
     end,
   },
-  -- {
-  --   "folke/lazydev.nvim",
-  --   ft = "lua", -- only load on lua files
-  --   opts = {
-  --     library = {
-  --       -- See the configuration section for more details
-  --       -- Load luvit types when the `vim.uv` word is found
-  --       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-  --     },
-  --   },
-  -- },
 
   {
     "stevearc/conform.nvim",
@@ -94,7 +97,6 @@ return {
         -- lua = { "stylua" },
         python = { "isort", "black" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
-        go = { "goimports", "gofmt" },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
         ["_"] = { "trim_whitespace" },

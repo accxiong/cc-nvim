@@ -51,13 +51,13 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   end,
 })
 
-vim.wo.wrap = false       -- 防止包裹
+vim.wo.wrap = false                     -- 防止包裹
 
-vim.opt.mouse:append("a") -- 启用鼠标
+vim.opt.mouse:append("a")               -- 启用鼠标
 
--- vim.opt.clipboard:append("unnamedplus") -- 系统剪贴板
+vim.opt.clipboard:append("unnamedplus") -- 系统剪贴板
 
-vim.opt.splitright = true -- 默认新窗口右和下
+vim.opt.splitright = true               -- 默认新窗口右和下
 vim.opt.splitbelow = true
 
 vim.opt.foldlevel = 99
@@ -70,14 +70,14 @@ vim.opt.signcolumn = "yes"
 
 
 
-vim.o.tabstop = 4                -- Tab 显示为 4 个空格宽度
+vim.o.tabstop = 4        -- Tab 显示为 4 个空格宽度
 vim.bo.tabstop = 4
-vim.o.softtabstop = 4            -- 插入模式下 Tab 的软宽度
-vim.o.shiftround = true          -- >> << 时对齐到 shiftwidth 的倍数
-vim.o.shiftwidth = 4             -- 自动缩进时每级缩进为 4 个空格
+vim.o.softtabstop = 4    -- 插入模式下 Tab 的软宽度
+vim.o.shiftround = true  -- >> << 时对齐到 shiftwidth 的倍数
+vim.o.shiftwidth = 4     -- 自动缩进时每级缩进为 4 个空格
 vim.bo.shiftwidth = 4
-vim.o.expandtab = true           -- 将 Tab 转为空格
+vim.o.expandtab = true   -- 将 Tab 转为空格
 vim.bo.expandtab = true
-vim.o.autoindent = true          -- 自动继承上一行缩进
+vim.o.autoindent = true  -- 自动继承上一行缩进
 vim.bo.autoindent = true
-vim.o.smartindent = true         -- 根据语法自动缩进
+vim.o.smartindent = true -- 根据语法自动缩进

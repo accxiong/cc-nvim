@@ -11,6 +11,13 @@ vim.keymap.set("i", "jk", "<Esc>")
 -- vim.keymap.set("n", "<C-j>", "<C-w>j")
 -- vim.keymap.set("n", "<C-k>", "<C-w>k")
 
+-- -- 使用 H 切换到左侧的 buffer
+-- vim.api.nvim_set_keymap('n', 'H', ':bprevious<CR>', { noremap = true, silent = true })
+--
+-- -- 使用 L 切换到右侧的 buffer
+-- vim.api.nvim_set_keymap('n', 'L', ':bnext<CR>', { noremap = true, silent = true })
+--
+
 vim.keymap.set({ "n", "x" }, "<S-H>", "^", { desc = "Start of line" })
 vim.keymap.set({ "n", "x" }, "<S-L>", "$", { desc = "End of line" })
 vim.keymap.set("n", "y<S-H>", "y^", { desc = "Yank from start of line" })
