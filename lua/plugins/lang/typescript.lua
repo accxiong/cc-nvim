@@ -91,6 +91,7 @@ return {
         },
       },
     },
+    opts_extend = { "servers" },
   },
 
   {
