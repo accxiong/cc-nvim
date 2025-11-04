@@ -73,6 +73,10 @@ return {
             buffer = ev.buf,
             desc = "[LSP] Show diagnostic",
           })
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
+            buffer = ev.buf,
+            desc = "[LSP] Code action",
+          })
           vim.keymap.set("n", "<leader>gk", vim.lsp.buf.signature_help, { desc = "[LSP] Signature help" })
           vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[LSP] Add workspace folder" })
           vim.keymap.set(

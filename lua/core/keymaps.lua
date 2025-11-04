@@ -33,6 +33,9 @@ map("n", "<S-Right>", "<C-w>l", { desc = "切换到右侧窗口", noremap = true
 map("n", "<S-Up>", "<C-w>k", { desc = "切换到上方窗口", noremap = true, silent = true })
 map("n", "<S-Down>", "<C-w>j", { desc = "切换到下方窗口", noremap = true, silent = true })
 
+map("n", "<D-\\>", "<C-w>v", { desc = "竖向分隔窗口", noremap = true, silent = true })
+map("n", "<D-C-\\>", "<C-w>s", { desc = "横向分隔窗口", noremap = true, silent = true })
+
 map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
 map({ "n" }, "die", "ggdG", { silent = true })     -- 删除整个文件内容
 map({ "n" }, "yie", "ggyG", { silent = true })     -- 复制整个文件内容
