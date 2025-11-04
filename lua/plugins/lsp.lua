@@ -35,6 +35,7 @@ return {
         lua_ls = {},
         vtsls = {},
         gopls = {},
+        pyright = {},
       },
     },
     config = function(_, opts)
@@ -129,7 +130,15 @@ return {
   {
     "mfussenegger/nvim-lint",
     event = "BufWritePost",
-    config = function()
+    opts = {
+      linters_by_ft = {},
+    },
+    config = function(_, opts)
+      local lint = require("lint")
+
+      -- Configure linters by filetype
+      lint.linters_by_ft = vim.tbl_deep_extend("force", lint.linters_by_ft or {}, opts.linters_by_ft or {})
+
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
           -- try_lint without arguments runs the linters defined in `linters_by_ft`
