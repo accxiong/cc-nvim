@@ -40,3 +40,5 @@ map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
 map({ "n" }, "die", "ggdG", { silent = true })     -- 删除整个文件内容
 map({ "n" }, "yie", "ggyG", { silent = true })     -- 复制整个文件内容
 map({ "n" }, "cie", "ggcG", { silent = true })     --
+
+vim.keymap.set("n", "<leader>L", "<CMD>Lazy<CR>", { desc = "[Lazy] Open Lazy.nvim" })

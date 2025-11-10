@@ -2,22 +2,17 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.opt.number = true
 vim.wo.cursorline = true -- 行高亮
-vim.opt.list = true
-vim.opt.listchars = { tab = ">-", trail = "-" }
+-- vim.opt.list = true  -- 显示不可见字符
+-- vim.opt.listchars = { tab = ">-", trail = "-" }    -- 字符映射
 vim.opt.autoread = true       -- 自动重载变更
 vim.opt.autoindent = true
 vim.opt.jumpoptions = "stack" -- gd ctrl+o 跳转模型
 vim.opt.swapfile = false
-
--- Tab related options
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 -- - "t"  -- 不根据 textwidth 自动换行
@@ -29,6 +24,25 @@ vim.opt.smartindent = true
 -- - "a"  -- 不自动格式化段落
 vim.api.nvim_create_autocmd({ "FileType" }, {
   command = "set formatoptions-=ro",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end,
+})
+
+-- Use 4 spaces for Go/Python related buffers
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go", "gomod", "python" },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.shiftwidth = 4
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
@@ -70,14 +84,14 @@ vim.opt.signcolumn = "yes"
 
 
 
-vim.o.tabstop = 4        -- Tab 显示为 4 个空格宽度
-vim.bo.tabstop = 4
-vim.o.softtabstop = 4    -- 插入模式下 Tab 的软宽度
+-- Tab related options (default 2 spaces globally)
+vim.o.tabstop = 2        -- Tab 显示为 2 个空格宽度
+vim.bo.tabstop = 2
+vim.o.softtabstop = 2    -- 插入模式下 Tab 的软宽度
 vim.o.shiftround = true  -- >> << 时对齐到 shiftwidth 的倍数
-vim.o.shiftwidth = 4     -- 自动缩进时每级缩进为 4 个空格
-vim.bo.shiftwidth = 4
+vim.o.shiftwidth = 2     -- 自动缩进时每级缩进为 2 个空格
+vim.bo.shiftwidth = 2
 vim.o.expandtab = true   -- 将 Tab 转为空格
 vim.bo.expandtab = true
 vim.o.autoindent = true  -- 自动继承上一行缩进
 vim.bo.autoindent = true
-vim.o.smartindent = true -- 根据语法自动缩进

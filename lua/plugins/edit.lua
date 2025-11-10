@@ -19,19 +19,15 @@ return {
       { "<leader>ut", "<cmd>UndotreeToggle<cr>", desc = "Toggle undo-tree" },
     },
     init = function()
-      vim.cmd([[
-      if has("persistent_undo")
-         let target_path = expand('~/.undodir')
+      local home = vim.env.HOME or vim.fn.expand("~")
+      local undodir = home .. "/.undodir"
 
-          " create the directory and any parent directories if the location does not exist.
-          if !isdirectory(target_path)
-              call mkdir(target_path, "p", 0700)
-          endif
+      if vim.fn.isdirectory(undodir) == 0 then
+        vim.fn.mkdir(undodir, "p", 0700)
+      end
 
-          let &undodir=target_path
-          set undofile
-      endif
-      ]])
+      vim.opt.undodir = undodir
+      vim.opt.undofile = true
     end,
   },
 

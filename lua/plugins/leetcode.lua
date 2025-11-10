@@ -85,9 +85,9 @@ return {
       },
 
       description = {
-        position = 'right', ---@type lc.position
+        position = 'left', ---@type lc.position
 
-        width = '50%', ---@type lc.size
+        width = '40%', ---@type lc.size
 
         show_stats = true, ---@type boolean
       },
