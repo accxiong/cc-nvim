@@ -1,15 +1,14 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
-      ensure_installed = {
-        -- "lua-language-server",
-        "gopls",
-      },
+      ensure_installed = {},
     },
+    opts_extend = { "ensure_installed" },
     config = function(_, opts)
       require("mason").setup(opts)
       local mr = require("mason-registry")
+
       local function ensure_installed()
         for _, tool in ipairs(opts.ensure_installed) do
           local p = mr.get_package(tool)
@@ -27,18 +26,10 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp", "williamboman/mason.nvim" },
+    dependencies = { "saghen/blink.cmp", "mason-org/mason.nvim", },
 
-    enabled = not vim.g.vscode and true or false,
-    opts = {
-      servers = {
-        lua_ls = {},
-        vtsls = {},
-        gopls = {},
-        pyright = {},
-      },
-    },
-    config = function(_, opts)
+    -- example calling setup directly for each LSP
+    config = function()
       vim.diagnostic.config({
         underline = false,
         signs = false,
@@ -50,19 +41,6 @@ return {
         },
       })
 
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      -- Configure LSP servers using new vim.lsp.config API
-      for server_name, server_config in pairs(opts.servers or {}) do
-        local config = vim.tbl_deep_extend("force", {
-          capabilities = capabilities,
-        }, server_config or {})
-        vim.lsp.config(server_name, config)
-      end
-
-      -- Enable all configured servers
-      vim.lsp.enable(vim.tbl_keys(opts.servers or {}))
-
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -72,10 +50,6 @@ return {
           vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {
             buffer = ev.buf,
             desc = "[LSP] Show diagnostic",
-          })
-          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
-            buffer = ev.buf,
-            desc = "[LSP] Code action",
           })
           vim.keymap.set("n", "<leader>gk", vim.lsp.buf.signature_help, { desc = "[LSP] Signature help" })
           vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[LSP] Add workspace folder" })
@@ -99,11 +73,7 @@ return {
     event = "BufWritePre",
     opts = {
       formatters_by_ft = {
-        -- lua = { "stylua" },
-        python = { "isort", "black" },
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        -- Use the "_" filetype to run formatters on filetypes that don't
-        -- have other formatters configured.
+        -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
         ["_"] = { "trim_whitespace" },
       },
 
@@ -133,16 +103,20 @@ return {
 
   {
     "mfussenegger/nvim-lint",
-    event = "BufWritePost",
-    opts = {
-      linters_by_ft = {},
+    dependencies = {
+      {
+        "mason-org/mason.nvim",
+        optional = true,
+        opts = {
+          ensure_installed = {
+            "codespell",
+          },
+        },
+        opts_extend = { "ensure_installed" },
+      },
     },
-    config = function(_, opts)
-      local lint = require("lint")
-
-      -- Configure linters by filetype
-      lint.linters_by_ft = vim.tbl_deep_extend("force", lint.linters_by_ft or {}, opts.linters_by_ft or {})
-
+    event = "BufWritePost",
+    config = function()
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
           -- try_lint without arguments runs the linters defined in `linters_by_ft`

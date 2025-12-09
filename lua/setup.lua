@@ -21,8 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- import your plugins
-    -- { import = "plugins" },
-    not vim.g.vscode and { import = "plugins" } or { import = "plugins.vscode" },
+    not vim.g.vscode and { import = "plugins" } or { import = "plugins.vscode" }, -- 导入`./lua/plugins/`目录下的所有lua文件
+    { import = "plugins.lang" }, -- 导入`./lua/plugins/lang/`目录下的所有lua文件
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

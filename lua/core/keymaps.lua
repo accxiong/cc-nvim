@@ -42,3 +42,8 @@ map({ "n" }, "yie", "ggyG", { silent = true })     -- 复制整个文件内容
 map({ "n" }, "cie", "ggcG", { silent = true })     --
 
 vim.keymap.set("n", "<leader>L", "<CMD>Lazy<CR>", { desc = "[Lazy] Open Lazy.nvim" })
+
+map("n", ";;", "A;<Esc>", { desc = "Add semicolon at end" })
+map("n", ",,", "A,<Esc>", { desc = "Add comma at end" })
+map("n", "''", "viw<Esc>a'<Esc>bi'<Esc>lel", { desc = "Surround word with single quotes" })
+map("n", '""', 'viw<Esc>a"<Esc>bi"<Esc>lel', { desc = "Surround word with double quotes" })

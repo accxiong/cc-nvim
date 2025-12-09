@@ -7,11 +7,12 @@ map({ "v", "o" }, "ii", "i{", { silent = true })
 map({ "v", "o" }, "ai", "a{", { silent = true })
 map({ "v", "o" }, "ib", "i(", { silent = true })
 
-map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
-map({ "n" }, "die", "ggdG", { silent = true })     -- 删除整个文件内容
-map({ "n" }, "yie", "ggyG", { silent = true })     -- 复制整个文件内容
-map({ "n" }, "cie", "ggcG", { silent = true })     --
+map({ "v" }, "ie", "<Esc>ggVG", { silent = true })              -- 全选整个文件
+map({ "n" }, "die", "ggdG", { silent = true })                  -- 删除整个文件内容
+map({ "n" }, "yie", "ggyG", { silent = true })                  -- 复制整个文件内容
+map({ "n" }, "cie", "ggcG", { silent = true })                  --
 
+map("n", "<Esc>", "<Cmd>noh<CR>", { desc = "Clear highlight" }) -- 按 Esc 清除搜索高亮
 
 vim.keymap.set("i", "jk", "<Esc>", { silent = true })
 vim.keymap.set({ "n", "x" }, "<S-H>", "^", { desc = "Start of line" })

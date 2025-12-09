@@ -1,3 +1,5 @@
+vim.lsp.enable("gopls")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -9,13 +11,12 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     optional = true,
     opts = {
       ensure_installed = {
         "gopls",
         "goimports",
-        "gofmt",
       },
     },
     opts_extend = { "ensure_installed" },

@@ -1,69 +1,60 @@
-return {
+vim.lsp.enable("basedpyright")
+
+local M = {
   {
     "nvim-treesitter/nvim-treesitter",
     optional = true,
     opts = {
-      ensure_installed = { "python", "toml", "yaml" },
+      ensure_installed = { "python" },
     },
     opts_extend = { "ensure_installed" },
   },
 
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     optional = true,
-    opts = {
-      ensure_installed = {
-        "pyright",
-        "black",
-        "isort",
-      },
-    },
     opts_extend = { "ensure_installed" },
+    opts = { ensure_installed = { "ruff", "pyright", "basedpyright" } },
   },
 
-  {
-    "neovim/nvim-lspconfig",
-    optional = true,
-    opts = {
-      servers = {
-        pyright = {
-          settings = {
-            python = {
-              analysis = {
-                autoImportCompletions = true,
-                typeCheckingMode = "standard",
-                inlayHints = {
-                  variableTypeHints = false,
-                  functionReturnTypeHints = false,
-                  callArgumentTypeHints = false,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    opts_extend = { "servers" },
-  },
-
+  -- formatter
   {
     "stevearc/conform.nvim",
     optional = true,
     opts = {
       formatters_by_ft = {
-        python = { "isort", "black" },
+        python = { "ruff_organize_imports", "ruff_format" },
       },
     },
   },
 
+  -- linter
   {
     "mfussenegger/nvim-lint",
     optional = true,
     opts = {
       linters_by_ft = {
-        python = { "pylint" },
+        python = { "ruff" },
       },
     },
   },
 
+  {
+    "linux-cultist/venv-selector.nvim",
+    branch = "regexp", -- Use this branch for the new version
+    dependencies = { "mfussenegger/nvim-dap" },
+    cmd = "VenvSelect",
+    opts = {
+      settings = {
+        options = {
+          notify_user_on_venv_activation = true,
+        },
+      },
+    },
+    --  Call config for python files and load the cached venv automatically
+    ft = "python",
+    keys = { { "<leader>cv", "<CMD>VenvSelect<CR>", desc = "Select VirtualEnv", ft = "python" } },
+  },
 }
+
+return M

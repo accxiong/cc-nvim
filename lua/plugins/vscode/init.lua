@@ -6,4 +6,5 @@ end
 return {
   require('plugins.colorscheme'),
   require('plugins.flash'),
+  require('plugins.edit'),
 }

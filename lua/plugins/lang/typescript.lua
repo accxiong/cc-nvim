@@ -1,3 +1,6 @@
+vim.lsp.enable("vtsls")
+vim.lsp.enable("eslint")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -9,13 +12,13 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     optional = true,
     opts = {
       ensure_installed = {
         "vtsls",
         "eslint-lsp",
-        "vue-language-server"
+        "vue-language-server",
       },
     },
     opts_extend = { "ensure_installed" },
