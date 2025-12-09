@@ -27,6 +27,8 @@ vim.keymap.set("n", "y<S-L>", "y$", { desc = "Yank to end of line" })
 if vim.g.vscode then
   map("n", "j", "gj", { remap = true, desc = "Move down (skip folds)", silent = true })
   map("n", "k", "gk", { remap = true, desc = "Move up (skip folds)", silent = true })
+  map("n", "<C-d>", "9gj", { remap = true, silent = true, desc = "Move down 9 screen lines (skip folds)" })
+  map("n", "<C-u>", "9gk", { remap = true, silent = true, desc = "Move up 9 screen lines (skip folds)" })
 end
 
 -- vscode 窗口移动快捷键
@@ -128,10 +130,28 @@ end
 -- { "key": "ctrl+a", "command": "cursorHome", "when": "editorTextFocus" },
 -- { "key": "ctrl+e", "command": "cursorEnd", "when": "editorTextFocus" }
 
--- 普通Neovim环境下的翻页功能：使用 9j/9k 替代 Ctrl+u/d
+-- VSCode 环境下的翻页功能： Ctrl+d/u 滚动半屏,将指令发给 Neovim 处理
 -- VSCode 下修改 keybindings.json 添加如下配置
--- { "key": "ctrl+d", "command": "cursorMove", "when": "editorTextFocus && neovim.mode != 'insert'", "args": { "to": "down", "by": "line", "value": 9, "revealCursor": true } },
--- { "key": "ctrl+u", "command": "cursorMove", "when": "editorTextFocus && neovim.mode != 'insert'", "args": { "to": "up", "by": "line", "value": 9, "revealCursor": true
+-- {
+--   "key": "ctrl+u",
+--   "command": "vscode-neovim.send",
+--   "when": "editorTextFocus && neovim.ctrlKeysNormal.u && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'",
+--   "args": "<C-u>"
+-- },
+-- {
+--   "key": "ctrl+d",
+--   "command": "vscode-neovim.send",
+--   "when": "editorTextFocus && neovim.ctrlKeysNormal.d && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'",
+--   "args": "<C-d>"
+-- },
+
+-- VSCode 环境下使用 jk 退出插入模式, 需要在用户下的 settings.json 添加如下配置
+-- "vscode-neovim.compositeKeys": {
+--   "jk": {
+--     "command": "vscode-neovim.escape"
+--   }
+-- },
+-- "vscode-neovim.compositeTimeout": 150
 
 -- VSCode 环境下禁用一些快捷键
 if vim.g.vscode then
