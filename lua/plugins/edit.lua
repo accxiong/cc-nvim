@@ -141,6 +141,11 @@ return {
       -- Disable the vanilla `s` keybinding
       { "s", "<NOP>", mode = { "n", "x", "o" } },
     },
+    opts = {
+      mappings = {
+        highlight = "sH", -- Highlight surrounding
+      },
+    },
   },
 
   {

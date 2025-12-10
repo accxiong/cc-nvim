@@ -1,6 +1,28 @@
 vim.lsp.enable("vtsls")
 vim.lsp.enable("eslint")
 
+-- 工具函数：判断项目是否存在 eslint/prettier 配置
+local function has_eslint()
+  return vim.fs.find({ ".eslintrc", ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json" }, {
+    upward = true,
+    stop = vim.loop.os_homedir(),
+  })[1] ~= nil
+end
+
+local function has_prettier()
+  return vim.fs.find({
+    ".prettierrc",
+    ".prettierrc.js",
+    ".prettierrc.cjs",
+    ".prettierrc.json",
+    "prettier.config.js",
+    "prettier.config.cjs",
+  }, {
+    upward = true,
+    stop = vim.loop.os_homedir(),
+  })[1] ~= nil
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -102,10 +124,46 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        typescript = { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-        vue = { "prettierd", "prettier", stop_after_first = true },
+
+        javascript = function()
+          if has_eslint() then
+            return { "eslint" } -- eslint fixAll
+          elseif has_prettier() then
+            return { "prettierd", "prettier" }
+          else
+            return {} -- 不格式化
+          end
+        end,
+
+        typescript = function()
+          if has_eslint() then
+            return { "eslint" }
+          elseif has_prettier() then
+            return { "prettierd", "prettier" }
+          else
+            return {}
+          end
+        end,
+
+        typescriptreact = function()
+          if has_eslint() then
+            return { "eslint" }
+          elseif has_prettier() then
+            return { "prettierd", "prettier" }
+          else
+            return {}
+          end
+        end,
+
+        vue = function()
+          if has_eslint() then
+            return { "eslint" }
+          elseif has_prettier() then
+            return { "prettierd", "prettier" }
+          else
+            return {}
+          end
+        end,
       },
     },
   },
