@@ -7,19 +7,19 @@ map({ "v", "o" }, "ii", "i{", { silent = true })
 map({ "v", "o" }, "ai", "a{", { silent = true })
 map({ "v", "o" }, "ib", "i(", { silent = true })
 
-map({ "v" }, "ie", "<Esc>ggVG", { silent = true })              -- 全选整个文件
-map({ "n" }, "die", "ggdG", { silent = true })                  -- 删除整个文件内容
-map({ "n" }, "yie", "ggyG", { silent = true })                  -- 复制整个文件内容
-map({ "n" }, "cie", "ggcG", { silent = true })                  --
+map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
+map({ "n" }, "die", "ggdG", { silent = true })     -- 删除整个文件内容
+map({ "n" }, "yie", "ggyG", { silent = true })     -- 复制整个文件内容
+map({ "n" }, "cie", "ggcG", { silent = true })     --
 
+-- Clear highlight
 map("n", "<Esc>", "<Cmd>noh<CR>", { desc = "Clear highlight" }) -- 按 Esc 清除搜索高亮
+map("n", "<leader>nh", "<Cmd>noh<CR>", { desc = "Clear highlight" })
 
-vim.keymap.set("i", "jk", "<Esc>", { silent = true })
 vim.keymap.set({ "n", "x" }, "<S-H>", "^", { desc = "Start of line" })
 vim.keymap.set({ "n", "x" }, "<S-L>", "$", { desc = "End of line" })
 vim.keymap.set("n", "y<S-H>", "y^", { desc = "Yank from start of line" })
 vim.keymap.set("n", "y<S-L>", "y$", { desc = "Yank to end of line" })
-
 
 -- keymap
 
@@ -33,7 +33,11 @@ end
 
 -- vscode 窗口移动快捷键
 if vim.g.vscode then
-  -- map("n", "<S-Left>", "<cmd>lua require('vscode').call('workbench.action.navigateLeft')<CR>", { desc = "Window move left" })
+  map("n", "sh", "<cmd>lua require('vscode').call('workbench.action.navigateLeft')<CR>")
+  map("n", "sl", "<cmd>lua require('vscode').call('workbench.action.navigateRight')<CR>")
+  map("n", "sk", "<cmd>lua require('vscode').call('workbench.action.navigateUp')<CR>")
+  map("n", "sj", "<cmd>lua require('vrcode').call('workbench.action.navigateDown')<CR>")
+  -- map("n", "<S-Left>", "<cmd>lua require('vrcode').call('workbench.action.navigateLeft')<CR>", { desc = "Window move left" })
   -- map("n", "<S-Right>", "<cmd>lua require('vscode').call('workbench.action.navigateRight')<CR>", { desc = "Window move right" })
   -- map("n", "<S-Up>", "<cmd>lua require('vscode').call('workbench.action.navigateUp')<CR>", { desc = "Window move up" })
   -- map("n", "<S-Down>", "<cmd>lua require('vscode').call('workbench.action.navigateDown')<CR>", { desc = "Window move down" })

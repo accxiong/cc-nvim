@@ -136,13 +136,14 @@ return {
         end,
 
         typescript = function()
-          if has_eslint() then
-            return { "eslint" }
-          elseif has_prettier() then
-            return { "prettierd", "prettier" }
-          else
-            return {}
-          end
+          -- if has_eslint() then
+          --   return { "eslint" }
+          -- elseif has_prettier() then
+          --   return { "prettierd", "prettier" }
+          -- else
+          --   return {}
+          -- end
+          return { "eslint" }
         end,
 
         typescriptreact = function()
@@ -167,5 +168,4 @@ return {
       },
     },
   },
-
 }
