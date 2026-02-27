@@ -1,10 +1,10 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs",
     opts = {
-      auto_install = true,
       ensure_installed = {
         "css",
         "html",
@@ -24,10 +24,13 @@ return {
         "python",
         "ini",
       },
-      sync_install = false,
-      highlight = { enable = true },
-      indent = { enable = true },
     },
     opts_extend = { "ensure_installed" },
+    config = function(_, opts)
+      -- 官方 API：已安装的解析器会自动跳过 (no-op if already installed)
+      if opts.ensure_installed and #opts.ensure_installed > 0 then
+        require("nvim-treesitter").install(opts.ensure_installed)
+      end
+    end,
   },
 }

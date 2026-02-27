@@ -35,7 +35,7 @@ return {
       -- stylua: ignore
       keymap = {
         -- If the command/function returns false or nil, the next command/function will be run.
-        preset = "none",
+        preset = "super-tab",
         ["<A-j>"] = { function(cmp) return cmp.select_next({ auto_insert = false }) end, "fallback", },
         ["<A-k>"] = { function(cmp) return cmp.select_prev({ auto_insert = false }) end, "fallback", },
         ["<C-n>"] = { function(cmp) return cmp.select_next({ auto_insert = false }) end, "fallback", },
