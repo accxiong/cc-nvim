@@ -53,6 +53,12 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
+          -- 禁用 Neovim 0.11+ 内置的 gr 前缀映射，避免与 Glance gr 冲突
+          vim.schedule(function()
+            for _, key in ipairs({ 'grn', 'grr', 'gra', 'gri', 'grt' }) do
+              pcall(vim.keymap.del, 'n', key, { buffer = ev.buf })
+            end
+          end)
           -- vim.keymap.set("n", "K", vim.lsp.buf.hover) -- configured in "nvim-ufo" plugin
           vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {
             buffer = ev.buf,
