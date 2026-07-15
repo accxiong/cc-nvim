@@ -1,5 +1,6 @@
 return {
   "mikavilpas/yazi.nvim",
+  submodules = false,
   dependencies = { "folke/snacks.nvim" },
   -- stylua: ignore
   keys = {
